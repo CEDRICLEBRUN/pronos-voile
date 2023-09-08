@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+race_one:
+  name: MyString
+  year: 1
+  starting_date: 2023-09-08
+
+race_two:
+  name: MyString
+  year: 2
+  starting_date: 2023-09-09
