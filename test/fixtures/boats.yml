@@ -1,0 +1,20 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+boat_one:
+  name: MyString
+  first_skipper_name: MyString
+  first_skipper_nationality: MyString
+  category: MyString
+  race: race_one
+
+boat_two:
+  name: MyString
+  first_skipper_name: MyString
+  first_skipper_nationality: MyString
+  second_skipper_name: MyString
+  second_skipper_nationality: MyString
+  category: MyString
+  race: race_two
+
+boat_three:
+  race: race_one

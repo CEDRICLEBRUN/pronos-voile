@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_08_083904) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_08_142825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_08_083904) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "boats", force: :cascade do |t|
+    t.string "name"
+    t.string "first_skipper_name"
+    t.string "first_skipper_nationality"
+    t.string "second_skipper_name"
+    t.string "second_skipper_nationality"
+    t.string "category"
+    t.bigint "race_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_boats_on_race_id"
+  end
+
   create_table "races", force: :cascade do |t|
     t.string "name"
     t.integer "year"
@@ -68,4 +81,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_08_083904) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "boats", "races"
 end
