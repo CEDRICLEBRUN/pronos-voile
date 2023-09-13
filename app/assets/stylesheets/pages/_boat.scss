@@ -1,0 +1,36 @@
+// Specific CSS for boat pages
+
+// Index
+
+.boat-category {
+  width: 100%;
+  padding: 10px;
+}
+
+.boat-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.boat-card {
+  border: thick double $orange;
+  padding: 4px;
+  text-align: center;
+}
+
+.boat-name {
+  color: $blue;
+  font-weight: bold;
+}
+
+.boat-skipper-card {
+  display: flex;
+}
+
+.boat-skipper {
+  font-style: italic;
+  font-weight: lighter;
+  padding-left: 8px;
+}

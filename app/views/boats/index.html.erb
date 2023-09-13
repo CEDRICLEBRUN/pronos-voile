@@ -1,0 +1,24 @@
+<div>
+  <h1 class="font-bold text-4xl">Les engagés</h1>
+  
+  <% @boats.each do |category| %>
+    <div class='boat-category'>
+      <h2><%= category.first %></h2>
+      <div class='boat-cards'>
+        <% category.second.each do |boat| %>
+          <div class='boat-card'>
+            <p class='boat-name'><%= boat.name %></p>
+            <div class='boat-skipper-card'>
+              <span class="fi fi-<%=boat.first_skipper_nationality%>"></span>
+              <p class='boat-skipper'><%= boat.first_skipper_name %></p>
+            </div>
+            <div class='boat-skipper-card'>
+              <span class="fi fi-<%=boat.second_skipper_nationality%>"></span>
+              <p class='boat-skipper'><%= boat.second_skipper_name %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
