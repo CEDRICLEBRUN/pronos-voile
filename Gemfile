@@ -37,7 +37,7 @@ gem "jbuilder"
 gem "devise"
 
 # FontAwesome
-gem 'font-awesome-sass', '~> 6.2.1'
+gem 'font-awesome-sass', '~> 6.4.2'
 
 # Cloudinary
 gem "cloudinary"
