@@ -2,11 +2,16 @@ require 'csv'
 require 'open-uri'
 require 'uri'
 
-ultim = ['db/fixtures/ultim.csv', 'Ultim']
-imoca = ['db/fixtures/imoca.csv', 'IMOCA']
-ocean_fifty = ['db/fixtures/ocean_fifty.csv', 'Ocean Fifty']
-class_fourty = ['db/fixtures/class_fourty.csv', 'Class 40']
-categories = [ultim, imoca, ocean_fifty, class_fourty]
+categories = [
+  { file_path: 'db/fixtures/ultim.csv',
+    name: 'Ultim' },
+  { file_path: 'db/fixtures/imoca.csv',
+    name: 'IMOCA' },
+  { file_path: 'db/fixtures/ocean_fifty.csv',
+    name: 'Ocean Fifty' },
+  { file_path: 'db/fixtures/class_fourty.csv',
+    name: 'Class 40' },
+]
 
 puts 'Cleaning the database'
 
@@ -29,7 +34,7 @@ puts 'Creating races done'
 puts 'Creating boats'
 
 categories.each do |category|
-  CSV.foreach(category.first, headers: true, col_sep: ";") do |row|
+  CSV.foreach(category[:file_path], headers: true, col_sep: ";") do |row|
     boat = Boat.new(
       name: row[0],
       first_skipper_name: row['first_skipper_name'],
@@ -37,7 +42,16 @@ categories.each do |category|
       second_skipper_name: row['second_skipper_name'],
       second_skipper_nationality: row['second_skipper_nationality']
     )
-    boat.category = category.last
+    case category[:name]
+    when 'Ultim'
+      boat.category = [category[:name], 'logo-ultim.jpg']
+    when 'IMOCA'
+      boat.category = [category[:name], 'logo-imoca.jpg']
+    when 'Ocean Fifty'
+      boat.category = [category[:name], 'logo-of.jpg']
+    when 'Class 40'
+      boat.category = [category[:name], 'logo-c40.jpg']
+    end
     boat.race = Race.last
     boat.save!
   end
