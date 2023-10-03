@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :boats, only: %i[index show]
+  resources :bets, only: %i[index create]
 end
