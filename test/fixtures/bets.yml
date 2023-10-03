@@ -1,0 +1,12 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bet_one:
+  position: 1
+  user: user_one
+  boat: boat_one
+
+bet_two:
+  position: 2
+  score: 1
+  user: user_two
+  boat: boat_two
