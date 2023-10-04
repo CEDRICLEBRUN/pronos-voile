@@ -1,29 +1,35 @@
 <div class= "boat-bcg">
-  <h1 class="boat-title">Les engagés</h1>
+  <h1>Les engagés</h1>
 
-  <% @boats.each do |category| %>
-    <div class='boat-category'>
-      <h2><%= category.first.first %></h2>
-      <div class='boat-cards'>
-        <% category.second.each do |boat| %>
-          <div class='boat-card'>
-            <p class='boat-name'><%= boat.name %></p>
-            <div class='flex justify-between items-center'>
-              <div>
-                <div class='boat-skipper-card'>
-                  <span class="fi fi-<%=boat.first_skipper_nationality%>"></span>
-                  <p class='boat-skipper'><%= boat.first_skipper_name %></p>
-                </div>
-                <div class='boat-skipper-card'>
-                  <span class="fi fi-<%=boat.second_skipper_nationality%>"></span>
-                  <p class='boat-skipper'><%= boat.second_skipper_name %></p>
-                </div>
-              </div>
-              <%= image_tag boat.category.last, class: 'logo-category'  %>
+  <div class='flex justify-around'>
+    <% @categories.each do |category| %>
+      <%= link_to boats_path(category: category['name']) do %>
+        <div class='flex justify-around items-center'>
+          <h2><%= category['name'] %></h2>
+          <%= image_tag category['logo_path'], class: 'logo-category mx-2' %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class='boat-cards'>
+    <% @boats.each do |boat| %>
+      <div class='boat-card'>
+        <p class='boat-name'><%= boat.name %></p>
+        <div class='flex justify-between items-center'>
+          <div>
+            <div class='boat-skipper-card'>
+              <span class="fi fi-<%=boat.first_skipper_nationality%>"></span>
+              <p class='boat-skipper'><%= boat.first_skipper_name %></p>
+            </div>
+            <div class='boat-skipper-card'>
+              <span class="fi fi-<%=boat.second_skipper_nationality%>"></span>
+              <p class='boat-skipper'><%= boat.second_skipper_name %></p>
             </div>
           </div>
-        <% end %>
+          <%# <%= image_tag category.first, class: 'logo-category'  %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

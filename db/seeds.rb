@@ -10,7 +10,7 @@ categories = [
   { file_path: 'db/fixtures/ocean_fifty.csv',
     name: 'Ocean Fifty' },
   { file_path: 'db/fixtures/class_fourty.csv',
-    name: 'Class 40' },
+    name: 'Class 40' }
 ]
 
 puts 'Cleaning the database'
@@ -26,7 +26,14 @@ race = Race.new(
   starting_date: '29/10/2023'
 )
 
-race.categories = ['Ultim', 'IMOCA', 'Ocean Fifty', 'Class 40']
+race.categories = [{ logo_path: 'logo-ultim.jpg',
+  name: 'Ultim' },
+{ logo_path: 'logo-imoca.jpg',
+  name: 'IMOCA' },
+{ logo_path: 'logo-of.jpg',
+  name: 'Ocean Fifty' },
+{ logo_path: 'logo-c40.jpg',
+  name: 'Class 40' }]
 race.save!
 
 puts 'Creating races done'
@@ -44,13 +51,13 @@ categories.each do |category|
     )
     case category[:name]
     when 'Ultim'
-      boat.category = [category[:name], 'logo-ultim.jpg']
+      boat.category = category[:name]
     when 'IMOCA'
-      boat.category = [category[:name], 'logo-imoca.jpg']
+      boat.category = category[:name]
     when 'Ocean Fifty'
-      boat.category = [category[:name], 'logo-of.jpg']
+      boat.category = category[:name]
     when 'Class 40'
-      boat.category = [category[:name], 'logo-c40.jpg']
+      boat.category = category[:name]
     end
     boat.race = Race.last
     boat.save!
