@@ -1,0 +1,22 @@
+<div class="navbar-top">
+  <div>
+    <h3><%= link_to "Accueil", root_path %></h3>
+  </div>
+  <% if user_signed_in? %>
+    <div class="flex">
+      <h3><%= link_to "Les engagés", boats_path %></h3>
+      <h3><%= link_to "Mes paris", bets_path %></h3>
+    </div>
+    <div>
+      <h3>Mon compte</h3>
+    </div>
+  <% else %>
+    <div>
+      <h3><%= link_to "Se connecter", new_user_session_path %></h3>
+      <h3><%= link_to "S'inscrire", new_user_registration_path %></h3>
+    </div>
+  <% end %>
+
+
+
+</div>

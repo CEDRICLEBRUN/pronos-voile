@@ -1,0 +1,15 @@
+.navbar-top {
+  height: 5vh;
+  background-color: $orange;
+  color: $blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  a {
+    margin: 0 15px;
+    font-weight: bold;
+  }
+}
