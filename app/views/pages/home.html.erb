@@ -1,11 +1,14 @@
 <div class="home" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('<%=image_url("home_bg.jpg")%>')">
   <p class="home-title">Bienvenue sur le site des paris de la course au large <i class="fa-solid fa-sailboat"></i></p>
-  <%= @starting_date %>
 
-  <div class="my-10">
-    <p><%= link_to "Se connecter", new_user_session_path %></p>
+  <div class="home-text">
+    <h2>La Transat Jacques Vabre approche à grand pas</h2>
+    <h2>Le départ aura lieu le <%= @starting_date.strftime("%d / %m / %Y") %></h2>
   </div>
-  <div class="my-10">
-    <p><%= link_to "S'inscrire", new_user_registration_path %></p>
+
+  <div class="timer-time my-10">
+    <p>Il te reste encore</p>
+    <div data-controller="countdown-start-race" data-countdown-start-race-date-value="Oct 29, 2023 13:00:00"></div>
+    <p>pour faire tes paris ou les modifier</p>
   </div>
 </div>
