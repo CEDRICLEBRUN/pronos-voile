@@ -7,4 +7,8 @@ class Race < ApplicationRecord
   def self.find_logo_path(category)
     Race.last.categories.find { |item| item["name"] == category.first }["logo_path"]
   end
+
+  def self.all_categories
+    Race.last.categories
+  end
 end

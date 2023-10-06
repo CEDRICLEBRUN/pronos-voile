@@ -1,6 +1,7 @@
 class BetsController < ApplicationController
   def index
     @all_categories = Race.last.categories
+    @my_bets = all_my_bets
   end
 
   def new
@@ -37,6 +38,15 @@ class BetsController < ApplicationController
   end
 
   private
+
+  def all_my_bets
+    categories = Race.all_categories
+    my_bets = {}
+    categories.each do |category|
+      my_bets[category['name']] = Bet.mine_by_category(category['name'], current_user)
+    end
+    my_bets
+  end
 
   def bet_params
     params.permit(:first_boat, :second_boat, :third_boat, :category)

@@ -13,7 +13,7 @@
             </div>
           </div>
         <% end %>
-        <%= render "shared/bets_card", category: category['name'], user: current_user %>
+        <%= render "shared/bets_card", bets: @my_bets[category['name']], category: category['name'] %>
       </div>
     <% end %>
   </div>
