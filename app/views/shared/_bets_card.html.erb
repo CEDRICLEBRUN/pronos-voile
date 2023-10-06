@@ -1,0 +1,13 @@
+<% if Bet.mine_by_category(category, user).empty? %>
+  <div class='flex justify-around items-center'>
+    <%= link_to "Je fais mes paris en #{category}", new_bet_path(category: category), class: 'btn-main' %>
+  </div>
+<% else %>
+  <div class='bet-card'>
+    <% Bet.mine_by_category(category, user).each do |bet| %>
+      <div>
+        <p class='bet-card-text'><%= bet.position %> - <%= bet.boat.name %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

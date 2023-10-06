@@ -3,4 +3,8 @@ class Race < ApplicationRecord
 
   serialize :categories, JSON
   validates :name, :year, :starting_date, presence: true
+
+  def self.find_logo_path(category)
+    Race.last.categories.find { |item| item["name"] == category.first }["logo_path"]
+  end
 end

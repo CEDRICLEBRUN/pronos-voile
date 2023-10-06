@@ -13,3 +13,32 @@
   min-height: 100vh;
   padding-top: 20vh;
 }
+
+.my-bets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2vh 15vw;
+  grid-auto-rows: minmax(100px, auto);
+  align-items: center;
+  margin: 4px 10vw;
+}
+
+.my-bets-category-name {
+  font-weight: bold;
+  font-size: larger;
+  color: white;
+}
+
+.bet-card {
+  background-color: white;
+  border-radius: 4px;
+  padding: 8px;
+  text-align: center;
+}
+
+.bet-card-text {
+  font-weight: bold;
+  font-style: oblique;
+  line-height: 4vh;
+  color: $blue;
+}

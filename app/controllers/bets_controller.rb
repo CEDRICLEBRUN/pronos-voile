@@ -1,19 +1,16 @@
 class BetsController < ApplicationController
   def index
-    @categories = Race.last.categories
-    @ultims = my_boats('Ultim')
-    @imocas = my_boats('IMOCA')
-    @ocean_fifties = my_boats('Ocean Fifty')
-    @class_40s = my_boats('Class 40')
-    # @rhum_monos = my_boats('Rhum Mono')
-    # @rhum_multis = my_boats('Rhum Multi')
+    @all_categories = Race.last.categories
   end
 
   def new
   end
 
   def create
-    if bet_params['skipper_1'] == '' || bet_params['skipper_2'] == '' || bet_params['skipper_3'] == ''
+    if bet_params['first_boat'] == '' ||
+       bet_params['second_boat'] == '' ||
+       bet_params['third_boat'] == ''
+
       flash.now.alert = 'Les 3 bateaux doivent être sélectionnés'
       render 'bets/new', status: :unprocessable_entity
     else
@@ -40,9 +37,6 @@ class BetsController < ApplicationController
   end
 
   private
-  def my_boats(category)
-    Bet.includes(:boat).where(user: current_user, boat: { category: category, race: Race.last }).sort_by(&:position)
-  end
 
   def bet_params
     params.permit(:first_boat, :second_boat, :third_boat, :category)
