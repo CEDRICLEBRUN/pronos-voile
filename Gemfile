@@ -42,6 +42,11 @@ gem 'font-awesome-sass', '~> 6.4.2'
 # Cloudinary
 gem "cloudinary"
 
+# Tailwind
+gem "tailwindcss-rails", "~> 2.0"
+gem 'simple_form-tailwind'
+gem 'simple_form', github: 'heartcombo/simple_form'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -84,5 +89,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "tailwindcss-rails", "~> 2.0"

@@ -1,0 +1,6 @@
+<div>
+  <% @crews.each do |crew| %>
+    <%= crew.name %>
+    <%= cl_image_tag crew.logo.key, class: "logo" %>
+  <% end %>
+</div>
