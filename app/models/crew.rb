@@ -1,5 +1,6 @@
 class Crew < ApplicationRecord
   belongs_to :user
+  has_many :admissions, dependent: :destroy
 
   validates :name, presence: { message: "Le nom de la ligue est obligatoire" }
   validates :name, uniqueness: { message: "Malheureusement ce nom est déjà pris" }

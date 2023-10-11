@@ -15,10 +15,94 @@ categories = [
 
 puts 'Cleaning the database'
 
+User.destroy_all
 Race.destroy_all
-Boat.destroy_all
 
-puts 'Creating races'
+#############################################################################
+
+puts 'Creating users'
+
+first_user = User.new(
+  email: 'cedric@gmail.com',
+  password: 'cedric',
+  first_name: 'Cédric',
+  last_name: 'LE BRUN',
+  username: 'Cé'
+)
+photoavatar = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1683299445/development/qpna49jt3a8ff4sfmudt46uwqeda.jpg')
+first_user.avatar.attach(io: photoavatar, filename: 'avatar.png', content_type: 'image/png')
+first_user.save!
+
+second_user = User.new(
+  email: 'tibopino@gmail.com',
+  password: 'tibopino',
+  first_name: 'Thibaut',
+  last_name: 'PINOT',
+  username: 'Tibopino'
+)
+second_user.save!
+
+third_user = User.new(
+  email: 'wawa@gmail.com',
+  password: 'secret',
+  first_name: 'Warren',
+  last_name: 'BARGUIL',
+  username: 'Wawa'
+)
+third_user.save!
+
+puts 'Creating users done'
+
+#############################################################################
+
+puts 'Creating crews'
+
+first_crew = Crew.new(
+  name: 'Chalalalala',
+)
+first_crew.user = first_user
+photologo = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1683299445/development/qpna49jt3a8ff4sfmudt46uwqeda.jpg')
+first_crew.logo.attach(io: photologo, filename: 'logo.png', content_type: 'image/png')
+first_crew.save!
+
+second_crew = Crew.new(
+  name: 'GFDJ',
+)
+second_crew.user = second_user
+second_crew.save!
+
+third_crew = Crew.new(
+  name: 'Arkea',
+)
+third_crew.user = third_user
+third_crew.save!
+
+puts 'Creating crews done'
+
+#############################################################################
+
+puts 'Creating admissions'
+
+first_admission = Admission.new()
+first_admission.crew = first_crew
+first_admission.user = second_user
+first_admission.save!
+
+second_admission = Admission.new()
+second_admission.crew = first_crew
+second_admission.user = third_user
+second_admission.save!
+
+first_admission = Admission.new()
+first_admission.crew = second_crew
+first_admission.user = first_user
+first_admission.save!
+
+puts 'Creating admissions done'
+
+#############################################################################
+
+puts 'Creating race'
 
 race = Race.new(
   name: 'Transat Jacques Vabre',
@@ -36,7 +120,9 @@ race.categories = [{ logo_path: 'logo-ultim.jpg',
   name: 'Class 40' }]
 race.save!
 
-puts 'Creating races done'
+puts 'Creating race done'
+
+#############################################################################
 
 puts 'Creating boats'
 
