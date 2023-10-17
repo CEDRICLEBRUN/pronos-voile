@@ -1,6 +1,28 @@
-<div>
-  <% @crews.each do |crew| %>
-    <%= crew.name %>
-    <%= cl_image_tag crew.logo.key, class: "logo" %>
-  <% end %>
+<div class="crew-bcg">
+  <div class="crew-cards">
+    <% @crews.each do |crew| %>
+      <div class="crew-card">
+        <div class="flex justify-around items-center">
+          <%= cl_image_tag crew.logo.key, class: "logo" %>
+          <div>
+            <h2><%= crew.name %></h2>
+            <p>créé par <%= crew.user.username %></p>
+            <p><i class="fa-solid fa-people-group"></i> <%= crew.number_of_members %></p>
+          </div>
+        </div>
+        <div>
+          <% if crew.validation_done_for?(current_user)%>
+            <%= link_to "Quitter", crew_admissions_path(crew, crew.admissions.where(user: current_user).first), class: "btn-quit", method: :delete %>
+          <% elsif crew.waiting_validation_for?(current_user) %>
+            <p><em>En attente</em></p>
+          <% elsif !crew.includes_user?(current_user) %>
+            <%= simple_form_for [crew, @admission] do |f| %>
+              <%= f.submit "Rejoindre", class: "btn-join" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
 </div>

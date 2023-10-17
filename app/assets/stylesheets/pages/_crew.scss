@@ -1,7 +1,22 @@
-.new-crew-bcg {
+.crew-bcg {
   background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('mer-nuage.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
   padding-top: 5vh;
+}
+
+.crew-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10%;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 10px;
+}
+
+.crew-card {
+  background-color: white;
+  border-radius: 4px 0px;
+  padding: 4px;
+  text-align: center;
 }

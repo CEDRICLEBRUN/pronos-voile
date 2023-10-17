@@ -1,6 +1,7 @@
 class CrewsController < ApplicationController
   def index
     @crews = Crew.all
+    @admission = Admission.new
   end
 
   def show

@@ -57,24 +57,29 @@ puts 'Creating users done'
 
 puts 'Creating crews'
 
+
 first_crew = Crew.new(
   name: 'Chalalalala',
-)
+  )
 first_crew.user = first_user
-photologo = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1683299445/development/qpna49jt3a8ff4sfmudt46uwqeda.jpg')
-first_crew.logo.attach(io: photologo, filename: 'logo.png', content_type: 'image/png')
+firstlogo = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1683299445/development/qpna49jt3a8ff4sfmudt46uwqeda.jpg')
+first_crew.logo.attach(io: firstlogo, filename: 'logo.png', content_type: 'image/png')
 first_crew.save!
 
 second_crew = Crew.new(
   name: 'GFDJ',
 )
 second_crew.user = second_user
+secondlogo = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1688115889/production/fwogzje5xrsatoksmt7ufqxpn6ts.jpg')
+second_crew.logo.attach(io: secondlogo, filename: 'logo.png', content_type: 'image/png')
 second_crew.save!
 
 third_crew = Crew.new(
   name: 'Arkea',
 )
 third_crew.user = third_user
+thirdlogo = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1688153937/development/twya9iabwi2titkptsg3odk9n3f1.jpg')
+third_crew.logo.attach(io: thirdlogo, filename: 'logo.png', content_type: 'image/png')
 third_crew.save!
 
 puts 'Creating crews done'
