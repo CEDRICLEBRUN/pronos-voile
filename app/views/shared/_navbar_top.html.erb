@@ -9,7 +9,7 @@
       <h3><%= link_to "Les ligues", crews_path %></h3>
     </div>
     <div>
-      <h3>Mon compte</h3>
+      <h3><%= link_to "Mon compte (#{Admission.waiting_validation(current_user).count})", users_dashboard_path %></h3>
     </div>
   <% else %>
     <div>

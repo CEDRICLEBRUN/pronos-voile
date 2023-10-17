@@ -13,9 +13,9 @@
         <div>
           <% if crew.validation_done_for?(current_user)%>
             <%= link_to "Quitter", crew_admissions_path(crew, crew.admissions.where(user: current_user).first), class: "btn-quit", method: :delete %>
-          <% elsif crew.waiting_validation_for?(current_user) %>
+          <% elsif crew.waiting_to_access?(current_user) %>
             <p><em>En attente</em></p>
-          <% elsif !crew.includes_user?(current_user) %>
+          <% elsif crew.not_contains_user?(current_user) %>
             <%= simple_form_for [crew, @admission] do |f| %>
               <%= f.submit "Rejoindre", class: "btn-join" %>
             <% end %>

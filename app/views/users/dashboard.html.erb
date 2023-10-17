@@ -1,0 +1,54 @@
+<div class="dashboard-bcg">
+  <div>
+    <h1>Mes ligues (<%= @my_crews.count %>)</h1>
+    <div>
+      <% if @my_crews.empty? %>
+        <%= link_to "Voir les ligues", crews_path %>
+      <% else %>
+        <div class="crew-cards">
+          <% @my_crews.each do |crew| %>
+            <div class="crew-img-dsb">
+              <%= link_to crew_path(crew) do %>
+                <%= cl_image_tag crew.logo.key, alt: "text", class: "" %>
+                <h2 class="crew-img-dsb-txt"><%= crew.name %></h2>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class>
+    <h1>Demandes d'adhésion à mes ligues (<%= @requests.count %>)</h1>
+    <div class="admission-cards">
+      <% unless @requests.empty? %>
+        <% @requests.each do |request| %>
+          <div class="admission-card">
+            <div>
+              <%= cl_image_tag request.crew.logo.key, class: "logo" %>
+              <h2><%= request.crew.name %></h2>
+            </div>
+            <div class="admission-user">
+              <%= cl_image_tag request.user.avatar.key, class: "avatar" %>
+              <p><%= request.user.first_name %> <%= request.user.last_name %></p>
+              <p><em>alias</em> <%= request.user.username %></p>
+            </div>
+            <div class="admission-validation">
+              <div class="admission-ok">
+                <%= link_to admission_accept_path(request), method: :patch, class: "btn-accept" do %>
+                  <i class="fas fa-check-circle"></i>
+                <% end %>
+              </div>
+              <div class="admission-ko">
+                <%= link_to admission_reject_path(request), method: :patch, class: "btn-quit" do %>
+                  <i class="fas fa-times-circle"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
