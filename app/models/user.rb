@@ -11,6 +11,12 @@ class User < ApplicationRecord
   has_one_attached :avatar
   before_create :assign_avatar
 
+  def self.accepted_in_league(crew)
+    owner = User.includes(:crews).where(crews: { id: crew.id })
+    accepted_users = User.includes(:admissions).where(admissions: { crew: crew, status: "accepted" })
+    owner + accepted_users
+  end
+
   private
   def assign_avatar
     return if avatar.attached?

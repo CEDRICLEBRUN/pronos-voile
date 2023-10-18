@@ -1,0 +1,48 @@
+.race-bcg {
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('bets-index-bcg.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding-top: 5vh;
+}
+
+.crew-img-rc {
+  height: 10vh;
+  width: 10vw;
+  padding: 10px;
+  margin: auto;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 80% 10%;
+  }
+}
+
+.user-card {
+  width: 20vw;
+  color: white;
+  img {
+    margin: auto;
+  }
+}
+
+.user-bet-card-category-txt {
+  font-size: 14px;
+  color: $blue;
+}
+
+.user-bet-card {
+  background-color: $light-gray;
+  color: $orange;
+  border-radius: 2px;
+  width: 20vw;
+  padding: 4px 0;
+  margin: 4px;
+  text-align: center;
+  p {
+    font-size: 10px;
+    text-align: left;
+    padding: 2px 0px 0px 6px;
+  }
+}

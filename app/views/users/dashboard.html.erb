@@ -8,7 +8,7 @@
         <div class="crew-cards">
           <% @my_crews.each do |crew| %>
             <div class="crew-img-dsb">
-              <%= link_to crew_path(crew) do %>
+              <%= link_to crew_race_path(crew, Race.last) do %>
                 <%= cl_image_tag crew.logo.key, alt: "text", class: "" %>
                 <h2 class="crew-img-dsb-txt"><%= crew.name %></h2>
               <% end %>
