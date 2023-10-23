@@ -9,5 +9,6 @@
         <p class='bet-card-text'><%= bet.position %> - <%= bet.boat.name %></p>
       </div>
     <% end %>
+    <%= link_to "Je modifie mes paris en #{category}", new_bet_path(category: category), class: 'text-change' %>
   </div>
 <% end %>

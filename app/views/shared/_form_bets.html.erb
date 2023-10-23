@@ -1,0 +1,14 @@
+<%= form_with url: bets_path(category: params[:category]), method: :post do |f| %>
+  <div class="my-3">
+    <%= f.select :first_boat, Boat.get_all_by_category(params[:category]), prompt: 'Vainqueur' %>
+  </div>
+  <div class="my-3">
+    <%= f.select :second_boat, Boat.get_all_by_category(params[:category]), prompt: 'Deuxième' %>
+  </div>
+  <div class="my-3">
+    <%= f.select :third_boat, Boat.get_all_by_category(params[:category]), prompt: 'Troisième' %>
+  </div>
+  <div class="my-3 form-button">
+    <%= f.submit "Bon vent !", class: "btn-bet" %>
+  </div>
+<% end %>
