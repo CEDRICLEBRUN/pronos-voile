@@ -1,5 +1,7 @@
 class Race < ApplicationRecord
   has_many :boats, dependent: :destroy
+  has_many :scores, dependent: :destroy
+  has_many :total_scores, dependent: :destroy
 
   serialize :categories, JSON
   validates :name, :year, :starting_date, presence: true

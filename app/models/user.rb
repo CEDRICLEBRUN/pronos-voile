@@ -8,13 +8,14 @@ class User < ApplicationRecord
   has_many :crews, dependent: :destroy
   has_many :admissions, dependent: :destroy
   has_many :scores, dependent: :destroy
+  has_many :total_scores, dependent: :destroy
 
   validates :first_name, :last_name, :username, presence: true
   validates :email, uniqueness: true
 
   has_one_attached :avatar
   before_create :assign_avatar
-  after_create :score_initialization
+  after_create :score_initialization, :total_score_initialization
 
   def self.accepted_in_league(crew)
     owner = User.includes(:crews).where(crews: { id: crew.id })
@@ -38,5 +39,13 @@ class User < ApplicationRecord
     categories = Race.last.categories
     score.points_by_category = categories.map { |category| [category['name'], 0]}.to_h
     score.save!
+  end
+
+  def total_score_initialization
+    TotalScore.create!(
+      race: Race.last,
+      user: self,
+      points: 0
+    )
   end
 end

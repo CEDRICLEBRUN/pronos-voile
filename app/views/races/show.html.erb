@@ -8,12 +8,13 @@
 
   <div class="user-cards">
     <% @users.each do |user| %>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center mb-8">
         <div class="user-card">
           <div class="flex justify-around items-center">
             <div class="items-center text-center">
               <%= cl_image_tag user.avatar.key, class: "avatar" %>
               <p><%= user.username %></p>
+              <p><%= user.total_scores.where(race: @race).first.points %> pts</p>
             </div>
           </div>
         </div>
@@ -24,7 +25,7 @@
                 <div class='flex items-center'>
                   <span class="user-bet-card-category-txt"><%= category['name'] %></span>
                 </div>
-                <span><%= user.scores.last.points_by_category[category['name']] %> pts</span>
+                <span><%= user.scores.where(race: @race).first.points_by_category[category['name']] %> pts</span>
               </div>
               <% Bet.mine_by_category(category["name"], user).each do |bet| %>
                 <div>
