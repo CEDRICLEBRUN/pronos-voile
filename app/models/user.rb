@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :crews, dependent: :destroy
   has_many :admissions, dependent: :destroy
 
+  validates :first_name, :last_name, :username, presence: true
+  validates :email, uniqueness: true
+
   has_one_attached :avatar
   before_create :assign_avatar
 

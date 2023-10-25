@@ -1,0 +1,26 @@
+<div class="connexion-bcg">
+  <h1>Connexion</h1>
+
+  <div class="form-crew">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "rounded px-8 pt-6 pb-8 mb-4"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="">
+      <%= f.label :email, "Email", class: "block text-sm font-bold mb-2 text-white"  %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="">
+      <%= f.label :password, "Mot de passe", class: "block text-sm font-bold mb-2 text-white" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "border rounded w-full py-2 px-3 text-gray-700 leading-tight" %>
+    </div>
+
+    <div class="mt-2">
+      <%= f.submit "Se connecter", class: "btn-main" %>
+    </div>
+
+    <div class="connexion-devise-links mt-3" >
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+</div>
