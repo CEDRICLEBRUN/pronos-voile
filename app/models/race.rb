@@ -13,4 +13,8 @@ class Race < ApplicationRecord
   def self.all_categories
     Race.last.categories
   end
+
+  def get_categories
+    self.categories.map {|category| category['name']}
+  end
 end

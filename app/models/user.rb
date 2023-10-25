@@ -17,10 +17,15 @@ class User < ApplicationRecord
   before_create :assign_avatar
   after_create :score_initialization, :total_score_initialization
 
-  def self.accepted_in_league(crew)
-    owner = User.includes(:crews).where(crews: { id: crew.id })
-    accepted_users = User.includes(:admissions).where(admissions: { crew: crew, status: "accepted" })
-    owner + accepted_users
+  def self.accepted_in_league(crew, race, category = nil)
+    owner = User.joins(:total_scores, :scores).includes(:crews).where(crews: { id: crew.id })
+    accepted_users = User.joins(:total_scores, :scores).includes(:admissions).where(admissions: { crew: crew, status: "accepted" })
+    players = owner + accepted_users
+    if category
+      return players.sort_by { |player| player.scores.where(race: race).first.points_by_category[category] }
+    else
+      return players.sort_by { |player| player.total_scores.where(race: race).first.points }
+    end
   end
 
   private
