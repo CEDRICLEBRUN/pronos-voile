@@ -3,7 +3,7 @@
     <h1>Mes ligues (<%= @my_crews.count %>)</h1>
     <div>
       <% if @my_crews.empty? %>
-        <%= link_to "Voir les ligues", crews_path %>
+        <p class="text-center m-3"><%= link_to "Voir les ligues", crews_path, class: "btn-main" %></p>
       <% else %>
         <div class="crew-cards">
           <% @my_crews.each do |crew| %>

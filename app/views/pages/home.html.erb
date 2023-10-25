@@ -12,8 +12,14 @@
     <p>pour faire tes paris ou les modifier</p>
   </div>
 
-  <div class="text-center">
-    <%= link_to "Se connecter", new_user_session_path, class: "btn-main m-3" %>
-    <%= link_to "S'inscrire", new_user_registration_path, class: "btn-main m-3" %>
-  </div>
+  <% if current_user %>
+    <div class="text-center">
+      <%= link_to "Voir mes paris", bets_path, class: "btn-main m-3" %>
+    </div>
+  <% else %>
+    <div class="text-center">
+      <%= link_to "Se connecter", new_user_session_path, class: "btn-main m-3" %>
+      <%= link_to "S'inscrire", new_user_registration_path, class: "btn-main m-3" %>
+    </div>
+  <% end %>
 </div>
