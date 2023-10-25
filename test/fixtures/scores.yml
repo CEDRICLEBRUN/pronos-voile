@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  points_by_category: MyText
+  user: one
+  race: one
+
+two:
+  points_by_category: MyText
+  user: two
+  race: two

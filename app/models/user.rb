@@ -7,12 +7,14 @@ class User < ApplicationRecord
   has_many :bets, dependent: :destroy
   has_many :crews, dependent: :destroy
   has_many :admissions, dependent: :destroy
+  has_many :scores, dependent: :destroy
 
   validates :first_name, :last_name, :username, presence: true
   validates :email, uniqueness: true
 
   has_one_attached :avatar
   before_create :assign_avatar
+  after_create :score_initialization
 
   def self.accepted_in_league(crew)
     owner = User.includes(:crews).where(crews: { id: crew.id })
@@ -26,5 +28,15 @@ class User < ApplicationRecord
 
     photoavatar = URI.open('https://res.cloudinary.com/dv67de4qe/image/upload/v1654783466/avatar_cwi0wm.jpg')
     avatar.attach(io: photoavatar, filename: 'avatar.png', content_type: 'image/png')
+  end
+
+  def score_initialization
+    score = Score.new(
+      race: Race.last,
+      user: self,
+    )
+    categories = Race.last.categories
+    score.points_by_category = categories.map { |category| [category['name'], 0]}.to_h
+    score.save!
   end
 end

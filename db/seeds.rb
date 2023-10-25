@@ -20,6 +20,28 @@ Race.destroy_all
 
 #############################################################################
 
+puts 'Creating race'
+
+race = Race.new(
+  name: 'Transat Jacques Vabre',
+  year: 2023,
+  starting_date: '29/10/2023'
+)
+
+race.categories = [{ logo_path: 'logo-ultim.jpg',
+  name: 'Ultim' },
+{ logo_path: 'logo-imoca.jpg',
+  name: 'IMOCA' },
+{ logo_path: 'logo-of.jpg',
+  name: 'Ocean Fifty' },
+{ logo_path: 'logo-c40.jpg',
+  name: 'Class 40' }]
+race.save!
+
+puts 'Creating race done'
+
+#############################################################################
+
 puts 'Creating users'
 
 first_user = User.new(
@@ -104,28 +126,6 @@ first_admission.user = first_user
 first_admission.save!
 
 puts 'Creating admissions done'
-
-#############################################################################
-
-puts 'Creating race'
-
-race = Race.new(
-  name: 'Transat Jacques Vabre',
-  year: 2023,
-  starting_date: '29/10/2023'
-)
-
-race.categories = [{ logo_path: 'logo-ultim.jpg',
-  name: 'Ultim' },
-{ logo_path: 'logo-imoca.jpg',
-  name: 'IMOCA' },
-{ logo_path: 'logo-of.jpg',
-  name: 'Ocean Fifty' },
-{ logo_path: 'logo-c40.jpg',
-  name: 'Class 40' }]
-race.save!
-
-puts 'Creating race done'
 
 #############################################################################
 
