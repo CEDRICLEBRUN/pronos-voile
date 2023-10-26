@@ -285,7 +285,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  cloudinary
+  cloudinary (~> 1.24)
   debug
   devise
   dockerfile-rails (>= 1.5)

@@ -40,7 +40,7 @@ gem "devise"
 gem 'font-awesome-sass', '~> 6.4.2'
 
 # Cloudinary
-gem "cloudinary"
+gem "cloudinary", '~> 1.24'
 
 # Tailwind
 gem "tailwindcss-rails", "~> 2.0"
