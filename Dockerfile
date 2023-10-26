@@ -18,6 +18,9 @@ ENV RAILS_ENV="production" \
 RUN gem update --system --no-document && \
     gem install -N bundler
 
+# Link to .env
+ARG RAILS_ENV=production
+ENV RAILS_ENV=${RAILS_ENV}
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
