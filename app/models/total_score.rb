@@ -7,7 +7,7 @@ class TotalScore < ApplicationRecord
   end
 
   def update_total_score!
-    reinitialize_total_score
+    reinitialize_total_score!
     score = self.user.scores.where(race: self.race).first
     score.points_by_category.each do |point|
       self.points += point.last

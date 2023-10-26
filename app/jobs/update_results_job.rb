@@ -1,4 +1,6 @@
 class UpdateResultsJob < ApplicationJob
+  require 'csv'
+  require 'uri'
   queue_as :default
 
   def perform()
@@ -8,7 +10,7 @@ class UpdateResultsJob < ApplicationJob
 
     puts 'Creating results'
     create_results
-    puts "Crating results done"
+    puts "Creating results done"
 
     puts 'Calcul score in progress'
     score_calculation
@@ -28,10 +30,11 @@ class UpdateResultsJob < ApplicationJob
       'app/jobs/fixtures/class_fourty.csv'
     ]
     file_paths.each do |file_path|
+      puts file_path
       CSV.foreach(file_path, headers: true, col_sep: ";") do |row|
-        boat = Boat.where(name: row['boat_name'], race: Race.last).first
+        boat = Boat.where(name: row['name'], race: Race.last).first
         result = Result.new(
-          result_position: row[0]
+          position: row[0]
         )
         result.boat = boat
         result.save!

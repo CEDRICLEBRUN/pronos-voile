@@ -1,7 +1,7 @@
 class Boat < ApplicationRecord
   belongs_to :race
   has_many :bets, dependent: :destroy
-  has_many :results, dependent: :destroy
+  has_one :result, dependent: :destroy
 
   validates :name, :first_skipper_name, :first_skipper_nationality, :category, presence: true
 
