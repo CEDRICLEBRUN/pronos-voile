@@ -25,6 +25,7 @@
                 <p><%= user.username %></p>
                 <% if params[:category] %>
                   <p><%= user.scores.where(race: @race).first.points_by_category[params[:category]] %></p>
+                  <%= user.scores.where(race: @race).first.calcul_score! %>
                 <% else %>
                   <p><%= user.total_scores.where(race: @race).first.points %> pts</p>
                 <% end %>
@@ -40,7 +41,7 @@
                   </div>
                   <span><%= user.scores.where(race: @race).first.points_by_category[category] %> pts</span>
                 </div>
-                <% Bet.mine_by_category(category, user).each do |bet| %>
+                <% Bet.get_bets_by_category(category, user).each do |bet| %>
                   <div>
                     <p><%= bet.position %> - <%= bet.boat.name %></p>
                   </div>

@@ -19,7 +19,7 @@ class BetsController < ApplicationController
     categories = Race.all_categories
     my_bets = {}
     categories.each do |category|
-      my_bets[category['name']] = Bet.mine_by_category(category['name'], current_user)
+      my_bets[category['name']] = Bet.get_bets_by_category(category['name'], current_user)
     end
     my_bets
   end
