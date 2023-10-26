@@ -1,4 +1,9 @@
 <div class="crew-bcg">
+
+  <div class="text-center mb-4">
+    <%= link_to "Créer une ligue", new_crew_path, class: "btn-main" %>
+  </div>
+
   <div class="crew-cards">
     <% @crews.each do |crew| %>
       <div class="crew-card">

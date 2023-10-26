@@ -32,7 +32,7 @@ class User < ApplicationRecord
   def assign_avatar
     return if avatar.attached?
 
-    photoavatar = URI.open('https://res.cloudinary.com/dv67de4qe/image/upload/v1654783466/avatar_cwi0wm.jpg')
+    photoavatar = URI.open('https://res.cloudinary.com/dciokrtia/image/upload/v1698344511/development/6rvjnlu98a6o65w5q6w1qqzzqzii.jpg')
     avatar.attach(io: photoavatar, filename: 'avatar.png', content_type: 'image/png')
   end
 
