@@ -1,0 +1,4 @@
+name: pronos-voile
+buildpacks:
+  - https://github.com/Scalingo/ruby_buildpack.git
+database_url: <%= ENV['DATABASE_URL'] %>
