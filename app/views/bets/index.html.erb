@@ -13,7 +13,7 @@
             </div>
           </div>
         <% end %>
-        <%= render "shared/bets_card", bets: @my_bets[category['name']], category: category['name'] %>
+        <%= render "shared/bets_card", bets: @my_bets[category['name']], category: category['name'], starting_time: @starting_time %>
       </div>
     <% end %>
   </div>

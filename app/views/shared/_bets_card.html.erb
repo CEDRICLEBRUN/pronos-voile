@@ -1,6 +1,8 @@
 <% if bets.empty? %>
   <div class='flex justify-around items-center'>
-    <%= link_to "Je fais mes paris en #{category}", new_bet_path(category: category), class: 'btn-main' %>
+    <% unless Time.zone.now > starting_time %>
+      <%= link_to "Je fais mes paris en #{category}", new_bet_path(category: category), class: 'btn-main' %>
+   <% end %>
   </div>
 <% else %>
   <div class='bet-card'>
@@ -9,6 +11,8 @@
         <p class='bet-card-text'><%= bet.position %> - <%= bet.boat.name %></p>
       </div>
     <% end %>
-    <%= link_to "Je modifie mes paris en #{category}", new_bet_path(category: category), class: 'text-change' %>
+    <% unless Time.zone.now > starting_time %>
+      <%= link_to "Je modifie mes paris en #{category}", new_bet_path(category: category), class: 'text-change' %>
+    <% end %>
   </div>
 <% end %>

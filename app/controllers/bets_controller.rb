@@ -2,10 +2,13 @@ class BetsController < ApplicationController
   def index
     @all_categories = Race.last.categories
     @my_bets = all_my_bets
+    @starting_time = Time.new(2023,10,29,13,05)
   end
 
   def new
-    @my_bets = all_my_bets
+    if Time.zone.now > Time.new(2023,10,29,13,05)
+      redirect_to bets_path, notice: 'Le départ est donné, tu ne peux plus parier !'
+    end
   end
 
   def create

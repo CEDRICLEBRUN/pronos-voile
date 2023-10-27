@@ -8,9 +8,9 @@
 
 
   <div class="text-center my-8">
-      <%= link_to "Général", crew_race_path(@crew, @race), class: "btn-main" %>
+      <%= link_to "Général", crew_race_path(@crew, @race), class: "btn-main #{ params[:category].nil? ? 'btn-selected' : ''}" %>
     <% @all_categories.each do |category| %>
-      <%= link_to category, crew_race_path(@crew, @race, category: category), class: "btn-main" %>
+      <%= link_to category, crew_race_path(@crew, @race, category: category), class: "btn-main #{ params[:category] == category ? 'btn-selected' : ''} "%>
     <% end %>
   </div>
 
@@ -23,32 +23,36 @@
               <div class="items-center text-center">
                 <%= cl_image_tag user.avatar.key, class: "avatar" %>
                 <p><%= user.username %></p>
-                <% if params[:category] %>
-                  <p><%= user.scores.where(race: @race).first.points_by_category[params[:category]] %></p>
-                  <%= user.scores.where(race: @race).first.calcul_score! %>
-                <% else %>
-                  <p><%= user.total_scores.where(race: @race).first.points %> pts</p>
+                <% if Time.zone.now > @starting_time %>
+                  <% if params[:category] %>
+                    <p><%= user.scores.where(race: @race).first.points_by_category[params[:category]] %></p>
+                    <%= user.scores.where(race: @race).first.calcul_score! %>
+                  <% else %>
+                    <p><%= user.total_scores.where(race: @race).first.points %> pts</p>
+                  <% end %>
                 <% end %>
               </div>
             </div>
           </div>
-          <div class="flex justify-between">
-            <% @categories.each do |category| %>
-              <div class='user-bet-card'>
-                <div class='flex justify-around items-center my-3'>
-                  <div class='flex items-center'>
-                    <span class="user-bet-card-category-txt"><%= category %></span>
+          <% if Time.zone.now > @starting_time %>
+            <div class="flex justify-between">
+              <% @categories.each do |category| %>
+                <div class='user-bet-card'>
+                  <div class='flex justify-around items-center my-3'>
+                    <div class='flex items-center'>
+                      <span class="user-bet-card-category-txt"><%= category %></span>
+                    </div>
+                    <span><%= user.scores.where(race: @race).first.points_by_category[category] %> pts</span>
                   </div>
-                  <span><%= user.scores.where(race: @race).first.points_by_category[category] %> pts</span>
+                  <% Bet.get_bets_by_category(category, user).each do |bet| %>
+                    <div>
+                      <p><%= bet.position %> - <%= bet.boat.name %></p>
+                    </div>
+                  <% end %>
                 </div>
-                <% Bet.get_bets_by_category(category, user).each do |bet| %>
-                  <div>
-                    <p><%= bet.position %> - <%= bet.boat.name %></p>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>

@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @starting_date = Race.last.starting_date
+    @starting_time = Time.new(2023,10,29,13,05)
   end
 end

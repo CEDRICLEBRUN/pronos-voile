@@ -3,7 +3,7 @@
 
   <div class='flex justify-around'>
     <% @categories.each do |category| %>
-      <%= link_to boats_path(category: category['name']) do %>
+      <%= link_to boats_path(category: category['name']), class: "btn-main #{ params[:category] == category['name'] ? 'btn-selected' : ''}" do %>
         <div class='flex justify-around items-center'>
           <h2><%= category['name'] %></h2>
           <%= image_tag category['logo_path'], class: 'logo-category mx-2' %>
