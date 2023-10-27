@@ -53,16 +53,7 @@ categories.each do |category|
       second_skipper_name: row['second_skipper_name'],
       second_skipper_nationality: row['second_skipper_nationality']
     )
-    case category[:name]
-    when 'Ultim'
-      boat.category = category[:name]
-    when 'IMOCA'
-      boat.category = category[:name]
-    when 'Ocean Fifty'
-      boat.category = category[:name]
-    when 'Class 40'
-      boat.category = category[:name]
-    end
+    boat.category = category[:name]
     boat.race = Race.last
     boat.save!
   end
