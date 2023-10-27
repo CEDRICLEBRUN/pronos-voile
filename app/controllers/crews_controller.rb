@@ -15,7 +15,7 @@ class CrewsController < ApplicationController
     @crew = Crew.new(crew_params)
     @crew.user = current_user
     if @crew.save
-      redirect_to crew_path
+      redirect_to crew_path(@crew)
     else
       flash[:notice] = @crew.errors.first.message
       redirect_to new_crew_path
