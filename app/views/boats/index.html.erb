@@ -1,7 +1,7 @@
 <div class= "boat-bcg">
   <h1>Les engagés</h1>
 
-  <div class='flex justify-around'>
+  <div class='categories-cards'>
     <% @categories.each do |category| %>
       <%= link_to boats_path(category: category['name']), class: "btn-main #{ params[:category] == category['name'] ? 'btn-selected' : ''}" do %>
         <div class='flex justify-around items-center'>

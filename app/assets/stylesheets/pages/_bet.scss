@@ -3,6 +3,7 @@
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+  width: 100%;
   padding-top: 5vh;
 }
 
@@ -21,6 +22,12 @@
   grid-auto-rows: minmax(100px, auto);
   align-items: center;
   margin: 4px 10vw;
+}
+
+@media(max-width: 768px) {
+  .my-bets {
+    grid-template-columns: 1fr;
+  }
 }
 
 .my-bets-category-name {

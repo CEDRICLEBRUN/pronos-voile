@@ -3,6 +3,7 @@
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+  width: 100%;
   padding-top: 5vh;
 }
 
@@ -12,6 +13,12 @@
   grid-gap: 10%;
   grid-auto-rows: 1fr;
   padding: 10px;
+}
+
+@media(max-width: 768px) {
+  .crew-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .crew-card {

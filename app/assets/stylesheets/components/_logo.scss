@@ -1,6 +1,18 @@
 .logo {
-  width: 10vw;
+  width: 20vw;
   height: 10vh;
   border-radius: 80% 10%;
   object-fit: cover;
+}
+
+.logo-category {
+  width: 40px;
+  height: 40px;
+}
+
+@media(max-width: 768px) {
+  .logo-category {
+    width: 20px;
+    height: 20px;
+  }
 }

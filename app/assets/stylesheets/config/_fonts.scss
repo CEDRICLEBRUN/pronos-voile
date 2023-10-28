@@ -61,3 +61,15 @@ p {
 ul {
   font-family: $body-font;
 }
+
+@media(max-width: 768px) {
+  h1 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  h2 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+}

@@ -8,10 +8,12 @@
 
 
   <div class="text-center my-8">
-      <%= link_to "Général", crew_race_path(@crew, @race), class: "btn-main #{ params[:category].nil? ? 'btn-selected' : ''}" %>
-    <% @all_categories.each do |category| %>
-      <%= link_to category, crew_race_path(@crew, @race, category: category), class: "btn-main #{ params[:category] == category ? 'btn-selected' : ''} "%>
-    <% end %>
+    <div class="categories-cards">
+      <% @all_categories.each do |category| %>
+        <%= link_to category, crew_race_path(@crew, @race, category: category), class: "btn-main #{ params[:category] == category ? 'btn-selected' : ''} "%>
+      <% end %>
+    </div>
+    <%= link_to "Général", crew_race_path(@crew, @race), class: "btn-main #{ params[:category].nil? ? 'btn-selected' : ''}" %>
   </div>
 
   <div class="user-cards">

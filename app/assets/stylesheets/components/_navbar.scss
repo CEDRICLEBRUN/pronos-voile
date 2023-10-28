@@ -1,5 +1,6 @@
 .navbar-top {
   height: 5vh;
+  width: 100%;
   background-color: $orange;
   color: $blue;
   display: flex;
@@ -9,7 +10,19 @@
   z-index: 1;
   top: 0;
   a {
-    margin: 0 15px;
+    margin: 0;
+    padding: 0 15px;
     font-weight: bold;
+  }
+}
+
+@media(max-width: 768px) {
+  .navbar-top {
+    height: 7vh;
+    font-size: 3vw;
+    padding: 0 5px;
+    h3 {
+      text-align: center;
+    }
   }
 }
