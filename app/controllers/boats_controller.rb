@@ -10,9 +10,9 @@ class BoatsController < ApplicationController
   private
   def filtered_boats(category)
     if category
-      Boat.where(race: Race.last, category: category).order(:category, :name)
+      Boat.where(race: Race.last, category: category).order(:name)
     else
-      Boat.where(race: Race.last).order(:category, :name)
+      Boat.where(race: Race.last).order(:name)
     end
   end
 end
