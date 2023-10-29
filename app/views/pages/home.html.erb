@@ -2,15 +2,15 @@
   <p class="home-title">Bienvenue sur le site des paris de la course au large <i class="fa-solid fa-sailboat"></i></p>
 
   <div class="home-text">
-    <h2>La Transat Jacques Vabre approche à grand pas</h2>
-    <h2>Le départ aura lieu le <%= @starting_date.strftime("%d / %m / %Y") %></h2>
+    <h2>La Transat Jacques Vabre vient de partir !</h2>
+    <h2>Le départ a eu lieu le <%= @starting_date.strftime("%d / %m / %Y") %></h2>
   </div>
 
-  <div class="timer-time my-10">
+  <%# <div class="timer-time my-10">
     <p>Il te reste encore</p>
     <div data-controller="countdown-start-race" data-countdown-start-race-date-value="Oct 29, 2023 13:00:00"></div>
     <p>pour faire tes paris ou les modifier</p>
-  </div>
+  </div> %>
 
   <% if current_user %>
     <div class="text-center">
