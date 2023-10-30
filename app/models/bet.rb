@@ -26,36 +26,40 @@ class Bet < ApplicationRecord
 
   def update_score!
     boat = Boat.find(self.boat.id)
-    if boat.result.position.nil?
-      case Boat.where(category: boat.category).count
-      when 1..10
-        self.score = Boat.where(category: boat.category).count + 1
-      when 11..20
+    if boat.result.nil?
+      self.score = 0
+    else
+      if boat.result.position.nil?
+        case Boat.where(category: boat.category).count
+        when 1..10
+          self.score = Boat.where(category: boat.category).count + 1
+        when 11..20
+          self.score = 12
+        when 21..30
+          self.score = 13
+        when 31..40
+          self.score = 14
+        when 41..50
+          self.score = 15
+        when 51..60
+          self.score = 16
+        end
+      elsif boat.result.position == self.position
+        self.score = self.position - 3
+      elsif boat.result.position in 1..3
+        self.score = boat.result.position - 1
+      elsif boat.result.position in 4..10
+        self.score = boat.result.position
+      elsif boat.result.position in 11..20
+        self.score = 11
+      elsif boat.result.position in 21..30
         self.score = 12
-      when 21..30
+      elsif boat.result.position in 31..40
         self.score = 13
-      when 31..40
+      elsif boat.result.position in 41..50
         self.score = 14
-      when 41..50
-        self.score = 15
-      when 51..60
-        self.score = 16
       end
-    elsif boat.result.position == self.position
-      self.score = self.position - 3
-    elsif boat.result.position in 1..3
-      self.score = boat.result.position - 1
-    elsif boat.result.position in 4..10
-      self.score = boat.result.position
-    elsif boat.result.position in 11..20
-      self.score = 11
-    elsif boat.result.position in 21..30
-      self.score = 12
-    elsif boat.result.position in 31..40
-      self.score = 13
-    elsif boat.result.position in 41..50
-      self.score = 14
+      self.save!
     end
-    self.save!
   end
 end
