@@ -35,7 +35,7 @@ class UpdateResultsJob < ApplicationJob
       name = element.search(".data-names").css('strong').text.upcase
       boat_name = I18n.transliterate(name).upcase
       boat = Boat.where(name: boat_name).first
-      unless boat.nil?
+      unless boat.nil? || boat.category == "IMOCA"
         result = Result.new
         result.position = element.search(".data-pos").css("span").text.to_i
         result.boat = boat
