@@ -1,6 +1,9 @@
 class UpdateResultsJob < ApplicationJob
   require 'csv'
   require 'uri'
+  require "open-uri"
+  require "nokogiri"
+  require "i18n"
   queue_as :default
 
   def perform()
@@ -23,24 +26,23 @@ class UpdateResultsJob < ApplicationJob
   end
 
   def create_results
-    file_paths = [
-      'app/jobs/fixtures/ultim.csv',
-      'app/jobs/fixtures/imoca.csv',
-      'app/jobs/fixtures/ocean_fifty.csv',
-      'app/jobs/fixtures/class_fourty.csv'
-    ]
-    file_paths.each do |file_path|
-      puts file_path
-      CSV.foreach(file_path, headers: true, col_sep: ";") do |row|
-        boat = Boat.where(name: row['name'], race: Race.last).first
-        result = Result.new(
-          position: row[0]
-        )
+    url = "https://www.transatjacquesvabre.org/le-classement"
+
+    html_file = URI.open(url).read
+    html_doc = Nokogiri::HTML.parse(html_file)
+
+    html_doc.search(".table-row").each do |element|
+      name = element.search(".data-names").css('strong').text.upcase
+      boat_name = I18n.transliterate(name).upcase
+      boat = Boat.where(name: boat_name).first
+      unless boat.nil?
+        result = Result.new
+        result.position = element.search(".data-pos").css("span").text.to_i
         result.boat = boat
         result.save!
+        puts result
       end
     end
-
   end
 
   def score_calculation
