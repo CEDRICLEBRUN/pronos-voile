@@ -40,7 +40,6 @@ class UpdateResultsJob < ApplicationJob
         result.position = element.search(".data-pos").css("span").text.to_i
         result.boat = boat
         result.save!
-        puts result
       end
     end
   end

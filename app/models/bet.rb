@@ -59,7 +59,7 @@ class Bet < ApplicationRecord
       elsif boat.result.position in 41..50
         self.score = 14
       end
-      self.save!
     end
+    self.save!
   end
 end
