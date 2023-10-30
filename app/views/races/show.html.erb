@@ -28,7 +28,6 @@
                 <% if Time.zone.now > @starting_time %>
                   <% if params[:category] %>
                     <p><%= user.scores.where(race: @race).first.points_by_category[params[:category]] %></p>
-                    <%= user.scores.where(race: @race).first.calcul_score! %>
                   <% else %>
                     <p><%= user.total_scores.where(race: @race).first.points %> pts</p>
                   <% end %>
