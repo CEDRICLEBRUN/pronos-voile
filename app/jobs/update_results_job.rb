@@ -37,7 +37,7 @@ class UpdateResultsJob < ApplicationJob
       boat = Boat.where(name: boat_name).first
       unless boat.nil? || boat.category == "IMOCA"
         result = Result.new
-        unless element.search(".data-pos").css("span").text == "AB"
+        unless element.search(".data-pos").css("span").text == ("AB" || "NL")
           result.position = element.search(".data-pos").css("span").text.to_i
         end
         result.boat = boat
