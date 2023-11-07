@@ -36,7 +36,7 @@ class UpdateResultsJob < ApplicationJob
       boat_name = I18n.transliterate(name).upcase
       boat = Boat.where(name: boat_name).first
       position = element.search(".data-pos").css("span").text
-      unless boat.nil? || boat.category == "IMOCA"
+      unless boat.nil?
         result = Result.new
         unless position == "AB" || position == "NL"
           result.position =  position.to_i

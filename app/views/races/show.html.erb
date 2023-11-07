@@ -47,11 +47,7 @@
                   </div>
                   <% Bet.get_bets_by_category(category, user).each do |bet| %>
                     <div>
-                      <% if bet.boat.category == "IMOCA" %>
-                        <p><%= bet.position %> - <%= bet.boat.name %></p>
-                      <% else %>
-                        <p><%= bet.position %> - <%= bet.boat.name %> (<%= bet.boat.result.nil? ? "AB" : bet.boat.result.position %>)</p>
-                      <% end %>
+                      <p><%= bet.position %> - <%= bet.boat.name %> (<%= bet.boat.result.nil? ? "AB" : bet.boat.result.position %>)</p>
                     </div>
                   <% end %>
                 </div>
