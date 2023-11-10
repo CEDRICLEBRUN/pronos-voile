@@ -47,7 +47,7 @@
                   </div>
                   <% Bet.get_bets_by_category(category, user).each do |bet| %>
                     <div>
-                      <p><%= bet.position %> - <%= bet.boat.name %> (<%= bet.boat.result.nil? ? "AB" : bet.boat.result.position %>)</p>
+                      <p><%= bet.position %> - <%= bet.boat.name %> (<%= (bet.boat.result.nil? || bet.boat.result.position.nil?) ? "AB" : bet.boat.result.position %>)</p>
                     </div>
                   <% end %>
                 </div>
